@@ -5,9 +5,9 @@
 Pod::Spec.new do |s|
   s.name             = 'flutter_spell_checker'
   s.version          = '1.0.0'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'A new Flutter plugin project for spelling check.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A new Flutter plugin project for spelling check.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
