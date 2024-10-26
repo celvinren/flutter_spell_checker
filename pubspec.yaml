@@ -1,0 +1,24 @@
+name: flutter_spell_checker
+description: A new Flutter plugin project.
+version: 1.0.0
+homepage: calvinr.com
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      some_platform:
+        pluginClass: somePluginClass
