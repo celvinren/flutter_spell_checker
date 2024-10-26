@@ -1,3 +1,4 @@
+import 'package:flutter_spell_checker/models/word_match.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'flutter_spell_checker_method_channel.dart';
@@ -8,7 +9,8 @@ abstract class FlutterSpellCheckerPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FlutterSpellCheckerPlatform _instance = MethodChannelFlutterSpellChecker();
+  static FlutterSpellCheckerPlatform _instance =
+      MethodChannelFlutterSpellChecker();
 
   /// The default instance of [FlutterSpellCheckerPlatform] to use.
   ///
@@ -23,7 +25,7 @@ abstract class FlutterSpellCheckerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<List<WordMatch>> checkSpelling(String text) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

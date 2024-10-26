@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spell_checker/models/word_match.dart';
 
 import 'flutter_spell_checker_platform_interface.dart';
 
@@ -10,8 +11,20 @@ class MethodChannelFlutterSpellChecker extends FlutterSpellCheckerPlatform {
   final methodChannel = const MethodChannel('flutter_spell_checker');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<List<WordMatch>> checkSpelling(String text) async {
+    final List<dynamic> suggestions =
+        await methodChannel.invokeMethod('checkSpelling', {'text': text});
+
+    return suggestions.map((e) {
+      final result = Map<String, dynamic>.from(e);
+      final word = result['word'] as String;
+      final offset = text.indexOf(word) + 1;
+      result['offset'] = offset;
+      result['length'] = word.length;
+      result['sentence'] = text;
+      result['message'] = 'Possible spelling mistake found.';
+
+      return WordMatch.fromJson(result);
+    }).toList();
   }
 }

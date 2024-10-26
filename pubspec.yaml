@@ -20,5 +20,6 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-      some_platform:
-        pluginClass: somePluginClass
+      android:
+        package: com.example.flutter_spell_checker
+        pluginClass: FlutterSpellCheckerPlugin
