@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Fix empty array issue in android plugin
+
 ## 1.0.0+1
 
 - Update README.md

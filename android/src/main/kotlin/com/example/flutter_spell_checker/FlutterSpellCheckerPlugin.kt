@@ -89,7 +89,7 @@ class FlutterSpellCheckerPlugin: FlutterPlugin, MethodCallHandler, SpellCheckerS
     
     override fun onGetSuggestions(results: Array<out SuggestionsInfo>?) {
         if (results == null) {
-            resultCallback?.success([])  // Return empty list if no results
+            resultCallback?.success(emptyList<Map<String, Any>>())  // Return empty list if no results
             resultCallback = null
             return
         }
