@@ -1,3 +1,8 @@
+## 1.0.3
+
+- Fix android crash issue
+- Fix ios result empty issue
+
 ## 1.0.2
 
 - Fix empty array issue in android plugin
