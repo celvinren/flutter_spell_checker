@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 
 public class FlutterSpellCheckerPlugin: NSObject, FlutterPlugin {
-  private let textChecker = UITextChecker()
+  // private let textChecker = UITextChecker()
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(
@@ -26,6 +26,7 @@ public class FlutterSpellCheckerPlugin: NSObject, FlutterPlugin {
   }
 
   private func checkSpelling(text: String, result: @escaping FlutterResult) {
+    let textChecker = UITextChecker()
     let nsRange = NSRange(location: 0, length: text.utf16.count)
     var resultsArray: [[String: Any]] = []
 
@@ -37,12 +38,12 @@ public class FlutterSpellCheckerPlugin: NSObject, FlutterPlugin {
       text.enumerateSubstrings(in: range, options: .byWords) { (substring, subrange, _, _) in
         if let word = substring {
           let wordRange = NSRange(subrange, in: text)
-          let misspelledRange = self.textChecker.rangeOfMisspelledWord(
+          let misspelledRange = textChecker.rangeOfMisspelledWord(
             in: text, range: wordRange, startingAt: 0, wrap: false, language: language)
 
           if misspelledRange.location != NSNotFound {
             let suggestions =
-              self.textChecker.guesses(forWordRange: misspelledRange, in: text, language: language)
+              textChecker.guesses(forWordRange: misspelledRange, in: text, language: language)
               ?? []
             let resultDict: [String: Any] = [
               "word": word,
