@@ -58,13 +58,15 @@ class FlutterSpellCheckerPlugin: FlutterPlugin, MethodCallHandler, SpellCheckerS
         var wordsProcessed = 0  // Track how many words have been processed
     
         words.forEach { word ->
-            val textInfo = TextInfo(word)
-            spellCheckerSession?.getSuggestions(textInfo, 5)  // Requesting 5 suggestions for each word
+            if (word.isNotBlank()) {
+                val textInfo = TextInfo(word)
+                spellCheckerSession?.getSuggestions(textInfo, 5)  // Requesting 5 suggestions for each word
+            }
         }
         
         this.suggestionsCallback = { result: SuggestionsInfo ->
             val originalWord = words[wordsProcessed]  // Get the original word for the result
-            wordsProcessed++       
+            wordsProcessed++     
             val suggestionCount = result.suggestionsCount
             val wordSuggestions = mutableListOf<String>()
             
